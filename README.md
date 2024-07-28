@@ -19,4 +19,14 @@ The specific example in the image shows the label already in its "floated" posit
 - Fuctional over Dazaling 
 - Clarity over Complexity 
 
+## Developer Integration Experiance
+- Component Driven UI
+- Hotswappble Native Web Compoents
+- Standardized Design
+- Page actions via Modals
+- AI Built Components
+- AI Capablities, filters, search, help, assistance, guided actions, validations, natural conversations
+- W3C Mesh, Mashable, and Sharable
+- Web Components
+
   
