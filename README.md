@@ -45,63 +45,63 @@ The specific example in the image shows the label already in its "floated" posit
 ![aiform](https://github.com/user-attachments/assets/284c2c33-70b4-455c-9a08-0b614ffec082)
 
 ## CLI Commands
-# Main Menu Commands for Universal Adaptable AI Form Data System
+### Main Menu Commands for Universal Adaptable AI Form Data System
 
-## 1. Top-Level Navigation
+### 1. Top-Level Navigation
 
 - /menu - Display the main menu options  
 - /home - Return to the home screen or default form view  
 - /forms - List all available forms or form templates  
 - /recent - Show recently accessed or edited forms  
 
-## 2. User Account and Settings
+### 2. User Account and Settings
 
 - /profile - Access user profile information and settings  
 - /settings - Open system settings and preferences  
 - /notifications - View and manage system notifications
 
-## 3. Data Management
+### 3. Data Management
 
 - /data - Access data management options (import, export, sync)  
 - /reports  - Generate and view reports based on form data  
 - /archive - Access archived forms or data  
 
-## 4. Help and Support
+### 4. Help and Support
 
 - /help - Access the help center and documentation
 -  /tutorial - Start an interactive system tutorial
 - /support - Contact customer support or report issues  
 
-## 5. Advanced Features
+### 5. Advanced Features
 
 - /ai - Access AI-specific features and settings  
 - /analytics - View analytics and insights from form data  
 - /integrate - Manage integrations with other systems or APIs  
 
-## 6. Administration (for admin users)
+### 6. Administration (for admin users)
 
 - /admin - Access administrative functions  
 -  /users - Manage user accounts and permissions  
 -  /logs - View system logs and activity reports 
 
-## 7. Quick Actions
+### 7. Quick Actions
 
 - /new - Start a new form
 -  /search - Initiate a global search across all forms and data
 -  /last - Return to the last edited form or viewed page
 
-## 8. Customization
+### 8. Customization
 
 -  /themes - Customize the interface appearance
 -  /shortcuts - View and customize keyboard shortcuts
 -  /widgets - Manage dashboard widgets or form components
 
-## 9. Collaboration
+### 9. Collaboration
 
 - /share - Share a form or collaborate with other users
 -  /teams - Manage team settings and collaborations
 
-## 10. System Status
+### 10. System Status
 
 - /status - View system status and performance metrics
 -  /updates - Check for system updates or new features
