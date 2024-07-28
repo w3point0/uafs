@@ -38,4 +38,8 @@ The specific example in the image shows the label already in its "floated" posit
 - W3C Mesh, Mashable, and Sharable
 - Web Components
 
+## Full Form Example #1 Data Entry
+
+![aiform](https://github.com/user-attachments/assets/284c2c33-70b4-455c-9a08-0b614ffec082)
+
   
