@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Form Application</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            padding: 10px;
+            color: #333;
+            margin: 0;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .data-field {
+            background-color: #e8f0fe;
+            border-radius: 6px;
+            padding: 12px;
+            position: relative;
+        }
+        .data-field label {
+            position: absolute;
+            top: -8px;
+            left: 8px;
+            background-color: #3498db;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        .data-field .value {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            word-break: break-word;
+        }
+        .input-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .input-form input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #3498db;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .input-form button {
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+        }
+        .input-form button:hover {
+            background-color: #2980b9;
+        }
+        .history, .guide, .menu {
+            background-color: #ecf0f1;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 15px;
+        }
+        .history h3, .guide h3, .menu h2 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+        .history ul, .menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .history li, .menu li {
+            background-color: #ffffff;
+            margin-bottom: 5px;
+            padding: 8px;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem;
+        }
+        .menu li {
+            cursor: pointer;
+        }
+        .menu li:hover {
+            background-color: #e8f0fe;
+        }
+        .guide p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+                font-size: 18px;
+            }
+            .container {
+                max-width: 800px;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .data-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .data-field .value {
+                font-size: 1.25rem;
+            }
+            .input-form {
+                flex-direction: row;
+            }
+            .input-form input {
+                flex-grow: 1;
+            }
+            .input-form button {
+                padding: 10px 20px;
+            }
+            .history h3, .guide h3, .menu h2 {
+                font-size: 1.25rem;
+            }
+            .history li, .guide p, .menu li {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="menuPage" style="display: none;">
+            <h1>Available Forms</h1>
+            <div class="menu">
+                <ul>
+                    <li onclick="showForm('personalData')">Personal Data Form</li>
+                    <li onclick="showForm('contactInfo')">Contact Information Form</li>
+                    <li onclick="showForm('workExperience')">Work Experience Form</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="personalDataForm">
+            <h1>Personal Data Form</h1>
+            <div class="data-grid">
+                <div class="data-field">
+                    <label>Name</label>
+                    <div id="name" class="value">-</div>
+                </div>
+                <div class="data-field">
+                    <label>Age</label>
+                    <div id="age" class="value">-</div>
+                </div>
+                <div class="data-field">
+                    <label>Sex</label>
+                    <div id="sex" class="value">-</div>
+                </div>
+                <div class="data-field">
+                    <label>Date of Birth</label>
+                    <div id="dob" class="value">-</div>
+                </div>
+            </div>
+            <form id="inputForm" class="input-form">
+                <input type="text" id="inputField" placeholder="Enter data, /guide, or /menu" />
+                <button type="submit">Submit</button>
+            </form>
+            <div class="history">
+                <h3>Input History</h3>
+                <ul id="inputHistory"></ul>
+            </div>
+            <div id="guideSection" class="guide" style="display: none;">
+                <h3>Guided Input</h3>
+                <p id="guideText"></p>
+            </div>
+        </div>
+
+        <div id="contactInfoForm" style="display: none;">
+            <h1>Contact Information Form</h1>
+            <div class="data-grid">
+                <div class="data-field">
+                    <label>Email</label>
+                    <div id="email" class="value">-</div>
+                </div>
+                <div class="data-field">
+                    <label>Phone</label>
+                    <div id="phone" class="value">-</div>
+                </div>
+                <div class="data-field">
+                    <label>Address</label>
+                    <div id="address" class="value">-</div>
+                </div>
+                <div class="data-field">
+                    <label>City</label>
+                    <div id="city" class="value">-</div>
+                </div>
+            </div>
+            <form id="contactInputForm" class="input-form">
+                <input type="text" id="contactInputField" placeholder="Enter data or /menu" />
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div id="workExperienceForm" style="display: none;">
+            <h1>Work Experience Form</h1>
+            <div class="data-grid">
+                <div class="data-field">
+                    <label>Company</label>
+                    <div id="company" class="value">-</div>
+                </div>
+                <div class="data-field">
+                    <label>Position</label>
+                    <div id="position" class="value">-</div>
+                </div>
+                <div class="data-field">
+                    <label>Start Date</label>
+                    <div id="startDate" class="value">-</div>
+                </div>
+                <div class="data-field">
+                    <label>End Date</label>
+                    <div id="endDate" class="value">-</div>
+                </div>
+            </div>
+            <form id="workInputForm" class="input-form">
+                <input type="text" id="workInputField" placeholder="Enter data or /menu" />
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const forms = {
+            personalData: ['name', 'age', 'sex', 'dob'],
+            contactInfo: ['email', 'phone', 'address', 'city'],
+            workExperience: ['company', 'position', 'startDate', 'endDate']
+        };
+        let currentForm = 'personalData';
+        const inputHistory = [];
+        let guideStep = -1;
+
+        function showMenu() {
+            document.getElementById('menuPage').style.display = 'block';
+            document.getElementById('personalDataForm').style.display = 'none';
+            document.getElementById('contactInfoForm').style.display = 'none';
+            document.getElementById('workExperienceForm').style.display = 'none';
+        }
+
+        function showForm(formName) {
+            currentForm = formName;
+            document.getElementById('menuPage').style.display = 'none';
+            document.getElementById('personalDataForm').style.display = formName === 'personalData' ? 'block' : 'none';
+            document.getElementById('contactInfoForm').style.display = formName === 'contactInfo' ? 'block' : 'none';
+            document.getElementById('workExperienceForm').style.display = formName === 'workExperience' ? 'block' : 'none';
+        }
+
+        function updateField(field, value) {
+            document.getElementById(field).textContent = value;
+        }
+
+        function updateInputHistory(input) {
+            inputHistory.push(input);
+            const historyElement = document.getElementById('inputHistory');
+            const listItem = document.createElement('li');
+            listItem.textContent = input;
+            historyElement.appendChild(listItem);
+        }
+
+        function startGuide() {
+            guideStep = 0;
+            document.getElementById('guideSection').style.display = 'block';
+            showNextGuideStep();
+        }
+
+        function showNextGuideStep() {
+            const currentFields = forms[currentForm];
+            if (guideStep < currentFields.length) {
+                const field = currentFields[guideStep];
+                let guideText = `Please enter your ${field}. Type: .${field} `;
+                document.getElementById('guideText').textContent = guideText;
+                document.getElementById('inputField').value = `.${field} `;
+            } else {
+                document.getElementById('guideSection').style.display = 'none';
+                document.getElementById('inputField').value = '';
+                alert('You have completed the guided input!');
+            }
+        }
+
+        function handleInput(input, formId) {
+            if (input === '/menu') {
+                showMenu();
+                return;
+            }
+
+            const match = input.match(/^\.(\w+)\s(.+)$/);
+            if (match) {
+                const [, field, value] = match;
+                if (forms[currentForm].includes(field.toLowerCase())) {
+                    updateField(field.toLowerCase(), value);
+                    if (formId === 'inputForm') {
+                        updateInputHistory(input);
+                    }
+                    document.getElementById(formId === 'inputForm' ? 'inputField' : 
+                                            formId === 'contactInputForm' ? 'contactInputField' : 'workInputField').value = '';
+
+                    if (guideStep !== -1) {
+                        guideStep++;
+                        showNextGuideStep();
+                    }
+                } else {
+                    alert(`Invalid field for ${currentForm}. Please use ${forms[currentForm].join(', ')}.`);
+                }
+            } else {
+                alert("Invalid input format. Please use format like '.field value' or type '/menu' to return to the menu.");
+            }
+        }
+
+        document.getElementById('inputForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const input = document.getElementById('inputField').value.trim();
+            if (input === '/guide') {
+                startGuide();
+            } else {
+                handleInput(input, 'inputForm');
+            }
+        });
+
+        document.getElementById('contactInputForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const input = document.getElementById('contactInputField').value.trim();
+            handleInput(input, 'contactInputForm');
+        });
+
+        document.getElementById('workInputForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const input = document.getElementById('workInputField').value.trim();
+            handleInput(input, 'workInputForm');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Data Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .data-field {
+            background-color: #e8f0fe;
+            border-radius: 6px;
+            padding: 15px;
+            position: relative;
+        }
+        .data-field label {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background-color: #3498db;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .data-field .value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .input-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .input-form input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 2px solid #3498db;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .input-form button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .input-form button:hover {
+            background-color: #2980b9;
+        }
+        .history {
+            background-color: #ecf0f1;
+            border-radius: 6px;
+            padding: 15px;
+        }
+        .history h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .history ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .history li {
+            background-color: #ffffff;
+            margin-bottom: 5px;
+            padding: 8px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Personal Data Form</h1>
+        <div class="data-grid">
+            <div class="data-field">
+                <label>Name</label>
+                <div id="name" class="value">-</div>
+            </div>
+            <div class="data-field">
+                <label>Age</label>
+                <div id="age" class="value">-</div>
+            </div>
+            <div class="data-field">
+                <label>Sex</label>
+                <div id="sex" class="value">-</div>
+            </div>
+            <div class="data-field">
+                <label>Date of Birth</label>
+                <div id="dob" class="value">-</div>
+            </div>
+        </div>
+        <form id="inputForm" class="input-form">
+            <input type="text" id="inputField" placeholder="Enter data (e.g., .name John Doe)" />
+            <button type="submit">Submit</button>
+        </form>
+        <div class="history">
+            <h3>Input History</h3>
+            <ul id="inputHistory"></ul>
+        </div>
+    </div>
+
+    <script>
+        const fields = ['name', 'age', 'sex', 'dob'];
+        const inputHistory = [];
+
+        function updateField(field, value) {
+            document.getElementById(field).textContent = value;
+        }
+
+        function updateInputHistory(input) {
+            inputHistory.push(input);
+            const historyElement = document.getElementById('inputHistory');
+            const listItem = document.createElement('li');
+            listItem.textContent = input;
+            historyElement.appendChild(listItem);
+        }
+
+        document.getElementById('inputForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const inputField = document.getElementById('inputField');
+            const input = inputField.value;
+            const match = input.match(/^\.(\w+)\s(.+)$/);
+            if (match) {
+                const [, field, value] = match;
+                if (fields.includes(field.toLowerCase())) {
+                    updateField(field.toLowerCase(), value);
+                    updateInputHistory(input);
+                    inputField.value = '';
+                } else {
+                    alert("Invalid field. Please use name, age, sex, or dob.");
+                }
+            } else {
+                alert("Invalid input format. Please use format like '.name John Doe'");
+            }
+        });
+    </script>
+</body>
+</html>

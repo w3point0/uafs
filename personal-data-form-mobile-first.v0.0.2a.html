@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Data Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            padding: 10px;
+            color: #333;
+            margin: 0;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .data-field {
+            background-color: #e8f0fe;
+            border-radius: 6px;
+            padding: 12px;
+            position: relative;
+        }
+        .data-field label {
+            position: absolute;
+            top: -8px;
+            left: 8px;
+            background-color: #3498db;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        .data-field .value {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            word-break: break-word;
+        }
+        .input-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .input-form input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #3498db;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .input-form button {
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+        }
+        .input-form button:hover {
+            background-color: #2980b9;
+        }
+        .history {
+            background-color: #ecf0f1;
+            border-radius: 6px;
+            padding: 12px;
+        }
+        .history h3 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+        .history ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .history li {
+            background-color: #ffffff;
+            margin-bottom: 5px;
+            padding: 8px;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem;
+        }
+        .guide {
+            background-color: #e8f0fe;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 15px;
+        }
+        .guide h3 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+        .guide p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+                font-size: 18px;
+            }
+            .container {
+                max-width: 800px;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .data-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .data-field .value {
+                font-size: 1.25rem;
+            }
+            .input-form {
+                flex-direction: row;
+            }
+            .input-form input {
+                flex-grow: 1;
+            }
+            .input-form button {
+                padding: 10px 20px;
+            }
+            .history h3, .guide h3 {
+                font-size: 1.25rem;
+            }
+            .history li, .guide p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Personal Data Form</h1>
+        <div class="data-grid">
+            <div class="data-field">
+                <label>Name</label>
+                <div id="name" class="value">-</div>
+            </div>
+            <div class="data-field">
+                <label>Age</label>
+                <div id="age" class="value">-</div>
+            </div>
+            <div class="data-field">
+                <label>Sex</label>
+                <div id="sex" class="value">-</div>
+            </div>
+            <div class="data-field">
+                <label>Date of Birth</label>
+                <div id="dob" class="value">-</div>
+            </div>
+        </div>
+        <form id="inputForm" class="input-form">
+            <input type="text" id="inputField" placeholder="Enter data or type /guide" />
+            <button type="submit">Submit</button>
+        </form>
+        <div class="history">
+            <h3>Input History</h3>
+            <ul id="inputHistory"></ul>
+        </div>
+        <div id="guideSection" class="guide" style="display: none;">
+            <h3>Guided Input</h3>
+            <p id="guideText"></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript remains unchanged
+        const fields = ['name', 'age', 'sex', 'dob'];
+        const inputHistory = [];
+        let guideStep = -1;
+
+        function updateField(field, value) {
+            document.getElementById(field).textContent = value;
+        }
+
+        function updateInputHistory(input) {
+            inputHistory.push(input);
+            const historyElement = document.getElementById('inputHistory');
+            const listItem = document.createElement('li');
+            listItem.textContent = input;
+            historyElement.appendChild(listItem);
+        }
+
+        function startGuide() {
+            guideStep = 0;
+            document.getElementById('guideSection').style.display = 'block';
+            showNextGuideStep();
+        }
+
+        function showNextGuideStep() {
+            if (guideStep < fields.length) {
+                const field = fields[guideStep];
+                let guideText = `Please enter your ${field}. Type: .${field} `;
+                switch(field) {
+                    case 'name':
+                        guideText += 'Your Full Name';
+                        break;
+                    case 'age':
+                        guideText += 'Your Age';
+                        break;
+                    case 'sex':
+                        guideText += 'Your Sex (e.g., Male, Female, Other)';
+                        break;
+                    case 'dob':
+                        guideText += 'Your Date of Birth (YYYY-MM-DD)';
+                        break;
+                }
+                document.getElementById('guideText').textContent = guideText;
+                document.getElementById('inputField').value = `.${field} `;
+            } else {
+                document.getElementById('guideSection').style.display = 'none';
+                document.getElementById('inputField').value = '';
+                alert('You have completed the guided input!');
+            }
+        }
+
+        document.getElementById('inputForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const inputField = document.getElementById('inputField');
+            const input = inputField.value.trim();
+
+            if (input === '/guide') {
+                startGuide();
+                return;
+            }
+
+            const match = input.match(/^\.(\w+)\s(.+)$/);
+            if (match) {
+                const [, field, value] = match;
+                if (fields.includes(field.toLowerCase())) {
+                    updateField(field.toLowerCase(), value);
+                    updateInputHistory(input);
+                    inputField.value = '';
+
+                    if (guideStep !== -1) {
+                        guideStep++;
+                        showNextGuideStep();
+                    }
+                } else {
+                    alert("Invalid field. Please use name, age, sex, or dob.");
+                }
+            } else {
+                alert("Invalid input format. Please use format like '.name John Doe' or type '/guide' for assistance.");
+            }
+        });
+    </script>
+</body>
+</html>
