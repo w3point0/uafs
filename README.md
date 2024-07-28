@@ -15,7 +15,7 @@ In contrast, the Universal Adaptable/AI Form system strips away this complexity,
 
 The specific example in the image shows the label already in its "floated" position above the input field, which is a slight variation on the standard floating label pattern. This static version maintains the space-saving and aesthetic benefits while ensuring the label is always visible. 
 
-## Full Form Example
+## Full Form Example #1
 ![image](https://github.com/user-attachments/assets/00b1d097-1746-458b-893b-f666f76d3cfb)
 
 ## Target UX Experiance 
