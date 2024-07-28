@@ -24,7 +24,7 @@ The specific example in the image shows the label already in its "floated" posit
 - Multiple modality of inputs, Voice, Visual Uploads, Keyboard 
 - Quick Entry, no complex menu structures and hidden options 
 - AI to drive the process, conversational flows 
-- Nemomics over Memory 
+- Mnemonics over Memory 
 - Fuctional over Dazaling 
 - Clarity over Complexity 
 
