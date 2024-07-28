@@ -1,5 +1,5 @@
-# uafs
-Universal Adaptable/AI Form Specification
+# UAFS Universal Adaptable/AI Form Specification
+
 
 In the realm of user experience (UX) design, we've witnessed an era of increasingly complex interfaces. Designers and developers have long strived to create visually appealing, feature-rich screens that anticipate every user need. This approach, while well-intentioned, often results in cluttered interfaces that can overwhelm users and impede efficiency.
 
