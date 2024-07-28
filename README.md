@@ -107,5 +107,6 @@ The specific example in the image shows the label already in its "floated" posit
 -  /updates - Check for system updates or new features
 
 # What is the Future of UX and UI Design in a AI World?
-![w3p0 _Poster_Mnemonics_over_Memory_--ar_169_a5b30f2a-ffa5-4d13-8396-555107e8fdd9 (1)](https://github.com/user-attachments/assets/9a58bb1f-8aff-43d0-b291-04f11b63bb6d)
+![image](https://github.com/user-attachments/assets/01982fd4-4b38-4dae-8360-1fc3db6b9442)
+
  
