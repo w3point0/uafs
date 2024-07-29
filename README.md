@@ -1,6 +1,9 @@
 # UAFS Universal Adaptable/AI Form Specification Proposal  
 ![2024-07-28_10-21-39](https://github.com/user-attachments/assets/09834607-9e11-486f-baf3-3f696a6904ea)
 
+## Specification
+https://w3point0.github.io/uafs/
+
 In the realm of user experience (UX) design, we've witnessed an era of increasingly complex interfaces. Designers and developers have long strived to create visually appealing, feature-rich screens that anticipate every user need. This approach, while well-intentioned, often results in cluttered interfaces that can overwhelm users and impede efficiency.
 
 As we stand on the cusp of an AI-driven future, we're presented with an opportunity to radically simplify user interactions. The Universal Adaptable/AI Form system embodies this shift towards simplicity and efficiency. It represents a paradigm shift from complex, visually-driven UX to streamlined, process-driven interactions assisted by AI.
